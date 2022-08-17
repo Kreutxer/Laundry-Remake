@@ -38,16 +38,14 @@ include "connection.php";
                 <a href="laundry.php" id="li">Laundry</a>
             </div>
             <div class="list">
-                <a href="" id="li">Transaksi</a>
+                <a href="transaksi.php" id="li">Transaksi</a>
             </div>
         </div>
         <div class="right">
             <div class="right-nav">
                 <div class="mt"></div>
                 <div class="nav-cont">
-                    <a href="" id="mail"></a>
-                    <a href="" id="notif"></a>
-                    <a href="" id="logout"></a>
+                    <a href="logout.php" id="logout"></a>
                 </div>
             </div>
             <div class="right-content">
@@ -56,10 +54,27 @@ include "connection.php";
                     <br>
                     <div class="wrapper" id="second">
                         <div class="wrap-content" id="table-a">
+                            <div class="aaaa">
+                                <div class="inp-box-search">
+                                    <form action="pelanggan.php" name="GET">
+                                        <input type="text" name="cari" id="search-box">
+                                        <input type="submit" value="Cari" id="submit-search">
+                                    </form>
+                                <?php 
+                                    if(isset($_GET['cari'])){
+                                        $cari = $_GET['cari'];
+                                    }
+                                ?>
+                                <div class="bbb">
+                                    <a href="form-addPel.php" class="add-pelanggan">+ Pelanggan</a>
+                                    <!-- <div class="add-pelanggan"><a href="" id="add-pel"></a></div> -->
+                                </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-a">
                                 <table>
                                     <tr>
-                                        <th id="id_laundry">ID Laundry</th>
                                         <th id="id_pelanggan">ID Pelanggan</th>
                                         <th id="nama_pelanggan">Nama</th>
                                         <th id="nomor_telepon">No Telp</th>
@@ -67,22 +82,26 @@ include "connection.php";
                                         <th id="action">Aksi</th>
                                     </tr>
                                     <?php
-                                        $query=mysqli_query($db, 'SELECT * FROM pelanggan');
-                                        while($data = mysqli_fetch_array($query)):
-                                    ?>
-                                    <tr>
-                                        <td><?= $data['id_laundry']?></td>
-                                        <td><?= $data['id_pelanggan']?></td>
-                                        <td><?= $data['nama_pelanggan']?></td>
-                                        <td><?= $data['no_telp']?></td>
-                                        <td><?= $data['alamat']?></td>
-                                        <td>
-                                            <a href="">hapus</a>
-                                            <a href="">edits</a>
-                                        </td>
-                                    </tr>
+                                        if(isset($_GET['cari'])){
+                                            $cari = $_GET['cari'];
+                                            $data = mysqli_query($db, "SELECT * FROM pelanggan WHERE nama_pelanggan LIKE '%".$cari."%' ORDER BY nama_pelanggan ASC");
+                                        } else{
+                                            $data = mysqli_query($db, "SELECT * FROM pelanggan ORDER BY id_pelanggan ASC");
+                                        }
+                                        while($d = mysqli_fetch_array($data)){
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $d['id_pelanggan']?></td>
+                                                <td><?php echo $d['nama_pelanggan']?></td>
+                                                <td><?php echo $d['no_telp']?></td>
+                                                <td><?php echo $d['alamat']?></td>
+                                                <td>
+                                                    <a href="action-hpsPel.php?id_pelanggan=<?php echo $d['id_pelanggan']?>">hapus</a>
+                                                    <a href="form-editPel.php?id_pelanggan=<?php echo $d['id_pelanggan']?>">edit</a>
+                                                </td>
+                                            </tr>
                                     <?php
-                                        endwhile;
+                                        }
                                     ?>
                                 </table>
                             </div>

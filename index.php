@@ -12,7 +12,7 @@ $pelanggan = mysqli_query($db, "SELECT * FROM pelanggan");
 $jumlah_pelanggan = mysqli_num_rows($pelanggan);
 
 //tabel pembayaran
-$pembayaran = mysqli_query($db, "SELECT * FROM pembayaran");
+$pembayaran = mysqli_query($db, "SELECT * FROM transaksi");
 $jumlah_pembayaran = mysqli_num_rows($pembayaran);
 
 ?>
@@ -50,15 +50,13 @@ $jumlah_pembayaran = mysqli_num_rows($pembayaran);
                 <a href="laundry.php" id="li">Laundry</a>
             </div>
             <div class="list">
-                <a href="" id="li">Transaksi</a>
+                <a href="transaksi.php" id="li">Transaksi</a>
             </div>
         </div>
         <div class="right">
             <div class="right-nav">
                 <div class="mt"></div>
                 <div class="nav-cont">
-                    <a href="" id="mail"></a>
-                    <a href="" id="notif"></a>
                     <a href="logout.php" id="logout"></a>
                 </div>
             </div>
