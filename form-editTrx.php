@@ -3,6 +3,9 @@
 include "session.php";
 include "connection.php";
 
+$id_transaksi = $_GET['id_transaksi'];
+$query_mysql = mysqli_query($db, "SELECT * FROM transaksi WHERE id_transaksi='$id_transaksi'");
+$data = mysqli_fetch_array($query_mysql);
 
 ?>
 
@@ -51,14 +54,14 @@ include "connection.php";
             </div>
             <div class="right-content">
                 <div class="right-box">
-                    <div class="box-title"><p id="title">Tambah Transaksi</p></div>
+                    <div class="box-title"><p id="title">Edit Transaksi</p></div>
                     <br>
                     <div class="wrapper-add" id="second-add">
                         <div class="wrap-content" id="add-pel">
                             <form action="action-addTrx.php" method="POST">
                                 <div class="box">
                                     <label for="namaPel">ID Pelanggan</label>
-                                    <input type="text" name="id_pelanggan" id="add">
+                                    <input type="text" name="id_pelanggan" id="add" value="<?php echo $data['id_pelanggan']?>">
                                 </div>
                                 <div class="box">
                                     <label for="noTelp">ID Laundry</label>

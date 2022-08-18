@@ -98,8 +98,8 @@ include "connection.php";
                                                 <td><?php echo $d['id_petugas']?></td>
                                                 <td><?php echo $d['tanggal']?></td>
                                                 <td>
-                                                    <a href="action-hpsLndry.php?id_laundry=<?php echo $d['id_laundry']?>">hapus</a>
-                                                    <a href="form-editLndry.php?id_laundry=<?php echo $d['id_laundry']?>">edit</a>
+                                                    <a href="action-hpsTrx.php?id_transaksi=<?php echo $d['id_transaksi']?>">hapus</a>
+                                                    <a href="form-editTrx.php?id_transaksi=<?php echo $d['id_transaksi']?>">edit</a>
                                                 </td>
                                             </tr>
                                     <?php
